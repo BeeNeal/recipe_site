@@ -4,7 +4,7 @@ from django.db import models
 from django.utils import timezone
 
 # to-do
-# do I need to do the ids? Django has built in
+# do I need to do the ids? Django has built in - worth it for migration to postgres
 
 class User(models.Model):
     """ """
@@ -13,7 +13,9 @@ class User(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     email = models.EmailField(max_length=254, )
-    picture = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100,)
+    password = models.TextField()  # will use b-crypt
+    picture = models.ImageField(upload_to=None, height_field=None, 
+                                width_field=None, max_length=100,)
 
 class Recipe(models.Model):
     """ """
@@ -24,6 +26,7 @@ class Recipe(models.Model):
     ingredients = models.TextField()
     instructions = models.TextField()
     description = models.TextField()
+    private = models.BooleanField()
     image = models.ImageField(upload_to=None, 
                               height_field=None,
                               width_field=None, 
