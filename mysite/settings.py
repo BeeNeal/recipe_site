@@ -75,15 +75,26 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         # 'NAME': os.path.join(BASE_DIR, 'qxydiajt'),
+#         'NAME': 'qxydiajt',
+#         'USER': 'qxydiajt',
+#         'PASSWORD': 'eiW6XmWuAOXjcw2jNqlgTgtveRN56JqR',
+#         'HOST': 'otto.db.elephantsql.com',
+#         'PORT': '5432'
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': os.path.join(BASE_DIR, 'qxydiajt'),
-        'NAME': 'qxydiajt',
-        'USER': 'qxydiajt',
-        'PASSWORD': 'eiW6XmWuAOXjcw2jNqlgTgtveRN56JqR',
-        'HOST': 'otto.db.elephantsql.com',
-        'PORT': '5432'
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'recipe_collection',
+        'USER': 'recipe_collection_user',
+        'PASSWORD': 'django123',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 

@@ -3,36 +3,47 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
-# to-do
-# do I need to do the ids? Django has built in - worth it for migration to postgres
-
 class User(models.Model):
     """ """
-    
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+
+    email = models.EmailField(max_length=254, )
+    user_name = models.CharField(max_length=50)
+    password = models.CharField(max_length=50) 
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
-    email = models.EmailField(max_length=254, )
-    password = models.TextField()  # will use b-crypt
-    picture = models.ImageField(upload_to=None, height_field=None, 
-                                width_field=None, max_length=100,)
+    dob = models.DateField(max_length=8)
+    zipcode = models.IntegerField()
+    # image = models.ImageField()  # requires pillow library **to-do**
+
+    def __repr__(self):
+        """Provide helpful representation when printed."""
+
+        return f"<User user_id={self.id} email={self.email}>"
+
+    def __str__(self):
+        return self.user_name
+
+
 
 class Recipe(models.Model):
     """ """
     
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    author_id = models.ForeignKey('User', on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
-    ingredients = models.TextField()
+    ingredients = models.ArrayField(ArrayField(models.CharField(max_length=50)))
     instructions = models.TextField()
     description = models.TextField()
-    private = models.BooleanField()
-    image = models.ImageField(upload_to=None, 
-                              height_field=None,
-                              width_field=None, 
-                              max_length=100, 
-                             )
     created_date = models.DateTimeField(default=timezone.now)
+    # image = models.ImageField(upload_to=None, 
+    #                           height_field=None,
+    #                           width_field=None, 
+    #                           max_length=100, 
+    #                          )   # **to-do**
+
+    def __repr__(self):
+        """Provide helpful representation when printed."""
+
+        return f"<User user_id={self.title}>"
 
     def publish(self):
         self.published_date = timezone.now()
@@ -54,16 +65,16 @@ class MeasurementQuantity(models.Model):
     quantity_amount = models.TextField()
 
 
-class Ingredient(model.Models):
+class Ingredient(models.Model):
     """ """
 
     ingredient_name = models.TextField()
-    tags = models.TextField()  # will use arrayField when port to postgres
+    tags = models.TextField() 
 
 
-class SavedRecipes(model.Models):
+class SavedRecipes(models.Model):
     """Join table for recipes that users want to try """
 
-    user = (models.ForeignKey(User.id))
-    saved_recipe = (models.ForeignKey(Recipe.id))
+    user = models.ForeignKey('User', on_delete=models.CASCADE)
+    saved_recipe = models.ForeignKey('Recipe', on_delete=models.CASCADE)
     saved_date = models.DateTimeField(default=timezone.now)

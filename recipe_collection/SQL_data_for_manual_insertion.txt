@@ -1,0 +1,1 @@
+INSERT INTO recipe_collection_user VALUES(2, 'fake@gmail.com', 'fake', '1234', 'fake', 'mcFake', '1999-01-01', '95134')
