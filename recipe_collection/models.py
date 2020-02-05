@@ -1,7 +1,9 @@
 import uuid  # creates unique ids
 from django.conf import settings
-from django.db import models
 from django.utils import timezone
+from django.contrib.postgres.fields import ArrayField
+from django.db import models
+
 
 class User(models.Model):
     """ """
@@ -30,10 +32,11 @@ class Recipe(models.Model):
     
     author_id = models.ForeignKey('User', on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
-    ingredients = models.ArrayField(ArrayField(models.CharField(max_length=50)))
+    ingredients = ArrayField(ArrayField(models.CharField(max_length=50, blank=True)))
     instructions = models.TextField()
     description = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
+    tags = ArrayField(ArrayField(models.CharField(max_length=50)))
     # image = models.ImageField(upload_to=None, 
     #                           height_field=None,
     #                           width_field=None, 
@@ -69,7 +72,7 @@ class Ingredient(models.Model):
     """ """
 
     ingredient_name = models.TextField()
-    tags = models.TextField() 
+    tags = ArrayField(ArrayField(models.CharField(max_length=50)))
 
 
 class SavedRecipes(models.Model):

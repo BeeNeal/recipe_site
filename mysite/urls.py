@@ -16,7 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# The include() function allows referencing other URLconfs. Whenever Django 
+# encounters include(), it chops off whatever part of the URL matched up to that
+#  point and sends remaining string to the included URLconf for more processing.
+# You should always use include() when you include other URL patterns.
 urlpatterns = [
+    path('recipe_collection/', include('recipe_collection.urls')),
+    path('recipe_collection/recipe_display', include('recipe_collection.urls')),
     path('admin/', admin.site.urls),
-    # path('', include('recipe_collection.urls')),
 ]
+
