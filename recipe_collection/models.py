@@ -27,7 +27,7 @@ class User(models.Model):
 
 
 
-class Recipe(models.Model):
+class UserRecipe(models.Model):
     """ """
     
     author_id = models.ForeignKey('User', on_delete=models.CASCADE)
@@ -56,6 +56,18 @@ class Recipe(models.Model):
         return self.title
 
 
+class ExternalRecipe(models.Model):
+    """Most recipes - users save recipe URL, perhaps add notes about it. """
+
+    title = models.CharField(max_length=200)
+    url = models.URLField(max_length=250)
+    has_been_made = models.BooleanField()
+    notes = models.TextField()
+    tags = ArrayField(ArrayField(models.CharField(max_length=50)))
+
+    def __str__(self):
+        return self.title
+
 class MeasurementUnits(models.Model):
     """ """
 
@@ -71,13 +83,8 @@ class MeasurementQuantity(models.Model):
 class Ingredient(models.Model):
     """ """
 
-    ingredient_name = models.TextField()
+    name = models.TextField()
     tags = ArrayField(ArrayField(models.CharField(max_length=50)))
 
-
-class SavedRecipes(models.Model):
-    """Join table for recipes that users want to try """
-
-    user = models.ForeignKey('User', on_delete=models.CASCADE)
-    saved_recipe = models.ForeignKey('Recipe', on_delete=models.CASCADE)
-    saved_date = models.DateTimeField(default=timezone.now)
+    def __str__(self):
+        return self.name

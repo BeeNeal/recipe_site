@@ -1,3 +1,5 @@
+# Purpose
+
 # MVP
     - Be able to create a recipe
     - Be able to save external recipe links
@@ -30,3 +32,7 @@ At first I wasn't sure if using Vue.js was initially going to be overkill. I the
 Git + GitHub for version control
 Visual Code Studio (my favorite Editor)
 https://code.visualstudio.com/docs/getstarted/settings
+
+
+### Helpful development links
+http://www.learningaboutelectronics.com/Articles/How-to-insert-images-into-a-database-table-with-Python-in-Django.php
