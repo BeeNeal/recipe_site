@@ -20,7 +20,7 @@ class User(models.Model):
     def __repr__(self):
         """Provide helpful representation when printed."""
 
-        return f"<User user_id={self.id} email={self.email}>"
+        return f"<User user_id={self.id}, username={self.user_name}, email={self.email}>"
 
     def __str__(self):
         return self.user_name

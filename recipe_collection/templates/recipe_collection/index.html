@@ -9,7 +9,38 @@
 </head>
 	<body>
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-		<script src="../static/main.js" async defer></script>
+		{% load static %}
+		
+		<script src="{% static 'recipe_collection/main.js' %}"></script>
+		<link rel="stylesheet" type="text/css" href="{% static 'recipe_collection/style.css' %}">
 		<div id="app">HELLO WORLD</div>
+
+		<!-- LOGIN MODAL -->
+		<div id="loginModal" class="modal">
+			<p>Login to see your recipe collection</p>
+			<form action="/">
+				email:<br>
+				<input type="text" name="email" value="email" required><br>
+				password:<br><br>
+				<input type="text" name="password" value="password" required><br>
+
+				<input type="submit" value="login">
+			</form>
+
+		</div>
+		<!-- END LOGIN MODAL -->
+
+		<div id="TEST">Welcome {{ current_user }}</div>
+
+		<div id="navbar">
+			<ul  class='navbar-item' class='navbarItem'>
+				<button onclick="showModal()">Login</button>
+			</ul>
+			<ul class='navbar-item'><a href="/user_recipes">My Cookbook</a></ul>
+			<ul class='navbar-item'><a href="/saved_recipes">Saved Recipes</a></ul>
+			<ul class='navbar-item'><a href="/recipes_to_try">Recipes to Try</a></ul>
+			<ul class='navbar-item'><a href="/grocery_list">Grocery List</a></ul>
+			<ul class='navbar-item'><a href="/pantry">Pantry</a></ul>
+		</div>
 	</body>
 </html>
