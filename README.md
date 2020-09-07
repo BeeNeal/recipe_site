@@ -1,7 +1,14 @@
 # Purpose
+  - A convenient place to organize and share recipes that you have made or want to try
+
+Deployed at: NealsMeals.com
+
+# Quickstart Guide
+
 
 # MVP
-    - Be able to create a recipe
+    - have user logins
+    - Be able to create a recipe (upload a pic, save a link, or write it out)
     - Be able to save external recipe links
         + add notes and tags about these recipes
     - Make menus (consolidate recipes)
@@ -36,3 +43,11 @@ https://code.visualstudio.com/docs/getstarted/settings
 
 ### Helpful development links
 http://www.learningaboutelectronics.com/Articles/How-to-insert-images-into-a-database-table-with-Python-in-Django.php
+
+
+### to-do
+
+* add logic to toggle b/w login/logout on view
+* create a create account page (will  make users manually for now, but they can login )
+* evenly space navbar
+* add featured recipe on the right side (make column)

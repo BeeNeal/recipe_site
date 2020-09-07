@@ -19,6 +19,21 @@ def index(request):
     print(context)
     return render(request, "recipe_collection/index.html", context)
 
+def validate_login():
+    """Validates user login."""
+
+    pass
+
+def login(request):
+    """ """
+
+    email = request.email
+    password = request.password
+    if User.objects.filter(email=email).password == password:
+        return "OK"
+    
+    
+
 def ext_recipe_display(request, id):
     recipes = ExternalRecipe.objects.filter(id=id)
     title = recipes[0].title
